@@ -9,16 +9,17 @@ interface AuthGuardProps {
 }
 
 export function AuthGuard({ children }: AuthGuardProps) {
-  const { isLoggedIn, isLoading } = useAuth();
+  const { isLoggedIn, isLoading, isHydrated } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!isLoading && !isLoggedIn) {
+    if (isHydrated && !isLoading && !isLoggedIn) {
       router.push("/auth/login");
     }
-  }, [isLoggedIn, isLoading, router]);
+  }, [isLoggedIn, isLoading, isHydrated, router]);
 
-  if (isLoading) {
+  // Show loading while hydrating or loading
+  if (!isHydrated || isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
@@ -26,8 +27,13 @@ export function AuthGuard({ children }: AuthGuardProps) {
     );
   }
 
+  // Don't render if not logged in (will redirect)
   if (!isLoggedIn) {
-    return null;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+      </div>
+    );
   }
 
   return <>{children}</>;
