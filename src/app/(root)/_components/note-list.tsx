@@ -3,11 +3,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { ApiInstance } from "@/lib/api";
 import { ApiResponse, INote } from "@/types/objects";
-import { NoteCard } from "./note-card";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, Search } from "lucide-react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { NoteCard } from "./note-card";
 
 export function NoteList() {
   const [searchTerm, setSearchTerm] = useState("");

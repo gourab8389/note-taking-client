@@ -1,12 +1,12 @@
 "use client";
 
-import { AuthGuard } from "@/components/auth-guard";
-import { NoteForm } from "./_components/note-form";
-import { NoteList } from "./_components/note-list";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { LogOut, User } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { AuthGuard } from "@/components/shared/auth-guard";
+import { NoteForm } from "./_components/note-form";
+import { NoteList } from "./_components/note-list";
 
 export default function HomePage() {
   const { user, logout } = useAuth();
