@@ -28,7 +28,7 @@ export interface SignupFormData {
 }
 
 export interface OTPFormData {
-  email: string;
+//   email: string;
   otp: string;
 }
 

@@ -55,7 +55,7 @@ export default function SignupPage() {
   });
 
   const otpForm = useForm<OTPFormData>({
-    resolver: zodResolver(otpSchema) as any,
+    resolver: zodResolver(otpSchema),
     defaultValues: {
       otp: "",
     },
