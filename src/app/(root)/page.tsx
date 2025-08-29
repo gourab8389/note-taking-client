@@ -1,21 +1,30 @@
 "use client";
 
+import { NoteForm } from "./_components/note-form";
+import { NoteList } from "./_components/note-list";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { LogOut, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { AuthGuard } from "@/components/shared/auth-guard";
-import { NoteForm } from "./_components/note-form";
-import { NoteList } from "./_components/note-list";
 
 export default function HomePage() {
-  const { user, logout } = useAuth();
+  const { user, logout, isHydrated } = useAuth();
   const router = useRouter();
 
   const handleLogout = () => {
     logout();
     router.push("/auth/login");
   };
+
+  // Don't render until hydrated
+  if (!isHydrated) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
 
   return (
     <AuthGuard>

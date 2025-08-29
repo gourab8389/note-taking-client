@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Provider } from "@/components/providers";
+import { HydrationBoundary } from "@/components/shared/hydration-boundary";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,10 +17,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className} suppressHydrationWarning>
         <Provider>
-          {children}
+          <HydrationBoundary>
+            {children}
+          </HydrationBoundary>
         </Provider>
       </body>
     </html>

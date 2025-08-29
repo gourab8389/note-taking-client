@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/hooks/use-auth";
 import { ApiInstance } from "@/lib/api";
 import { toast } from "sonner";
 
-export default function GoogleSuccessPage() {
+function GoogleAuthHandler() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { login } = useAuth();
@@ -44,11 +44,19 @@ export default function GoogleSuccessPage() {
     }
   }, [searchParams, login, router]);
 
+  return null;
+}
+
+export default function GoogleSuccessPage() {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="text-center">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary mx-auto"></div>
         <p className="mt-4 text-lg">Processing Google authentication...</p>
+        
+        <Suspense fallback={null}>
+          <GoogleAuthHandler />
+        </Suspense>
       </div>
     </div>
   );
