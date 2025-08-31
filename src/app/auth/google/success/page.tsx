@@ -3,7 +3,7 @@
 import { useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/hooks/use-auth";
-import { ApiInstance } from "@/lib/api";
+import { AuthApi } from "@/lib/api";
 import { toast } from "sonner";
 
 function GoogleAuthHandler() {
@@ -19,7 +19,7 @@ function GoogleAuthHandler() {
       const fetchUserProfile = async () => {
         try {
           // Set token temporarily for this request
-          const response = await ApiInstance.get("/auth/profile", {
+          const response = await AuthApi.get("/profile", {
             headers: {
               Authorization: `Bearer ${token}`,
             },
