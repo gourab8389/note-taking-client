@@ -12,7 +12,14 @@ import { Eye, EyeOff, Mail, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { AuthApi } from "@/lib/api";
 import { LoginFormData, ApiResponse } from "@/types/objects";
 import { useAuth } from "@/hooks/use-auth";
@@ -59,7 +66,9 @@ export default function LoginPage() {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = `${process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5000'}/auth/google`;
+    window.location.href = `${
+      process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:5000"
+    }/auth/google`;
   };
 
   return (
@@ -67,9 +76,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
-          <CardDescription>
-            Sign in to your account to continue
-          </CardDescription>
+          <CardDescription>Sign in to your account to continue</CardDescription>
         </CardHeader>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <CardContent className="space-y-4">
@@ -86,7 +93,9 @@ export default function LoginPage() {
                 />
               </div>
               {form.formState.errors.email && (
-                <p className="text-sm text-red-600">{form.formState.errors.email.message}</p>
+                <p className="text-sm text-red-600">
+                  {form.formState.errors.email.message}
+                </p>
               )}
             </div>
 
@@ -103,14 +112,16 @@ export default function LoginPage() {
                 />
                 <button
                   type="button"
-                  className="absolute right-3 top-3 h-4 w-4 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-2 h-4 w-4 text-gray-400 hover:text-gray-600"
                   onClick={() => setShowPassword(!showPassword)}
                 >
-                  {showPassword ? <EyeOff /> : <Eye />}
+                  {showPassword ? <EyeOff size={20}/> : <Eye size={20}/>}
                 </button>
               </div>
               {form.formState.errors.password && (
-                <p className="text-sm text-red-600">{form.formState.errors.password.message}</p>
+                <p className="text-sm text-red-600">
+                  {form.formState.errors.password.message}
+                </p>
               )}
             </div>
 
