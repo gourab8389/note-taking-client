@@ -198,7 +198,7 @@ export default function SignupPage() {
                 <Input
                   id="name"
                   type="text"
-                  placeholder="John Doe"
+                  placeholder="Enter Name"
                   className="pl-10"
                   {...signupForm.register("name")}
                 />
@@ -217,7 +217,7 @@ export default function SignupPage() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="john@example.com"
+                  placeholder="Enter Email"
                   className="pl-10"
                   {...signupForm.register("email")}
                 />

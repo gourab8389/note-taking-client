@@ -87,7 +87,7 @@ export default function LoginPage() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="john@example.com"
+                  placeholder="Enter Email"
                   className="pl-10"
                   {...form.register("email")}
                 />
