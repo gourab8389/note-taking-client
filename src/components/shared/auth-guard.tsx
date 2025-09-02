@@ -22,7 +22,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
   if (!isHydrated || isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+        <div className="animate-spin rounded-full h-20 w-20 border-b-2 border-primary"></div>
       </div>
     );
   }
@@ -31,7 +31,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
   if (!isLoggedIn) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+        <div className="animate-spin rounded-full h-20 w-20 border-b-2 border-primary"></div>
       </div>
     );
   }
