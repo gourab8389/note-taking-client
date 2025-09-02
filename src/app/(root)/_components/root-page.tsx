@@ -49,28 +49,37 @@ export default function RootPage() {
               {/* Desktop Header - Hidden on small screens */}
               <div className="hidden md:flex items-center space-x-4">
                 <div className="flex items-center space-x-2">
-                  {user?.avatar ? (
-                    <img
-                      src={user.avatar}
-                      alt={user.name}
-                      className="h-8 w-8 rounded-full"
-                    />
-                  ) : (
-                    <User className="h-8 w-8 p-2 bg-gray-100 rounded-full" />
-                  )}
-                  <span className="text-sm font-medium text-gray-700">
-                    {user?.name}
-                  </span>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" className="flex items-center space-x-2 p-2">
+                        {user?.avatar ? (
+                          <img
+                            src={user.avatar}
+                            alt={user.name}
+                            className="h-8 w-8 rounded-full"
+                          />
+                        ) : (
+                          <User className="h-8 w-8 p-2 bg-gray-100 rounded-full" />
+                        )}
+                        <ChevronDown className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-48">
+                      <div className="px-3 py-2">
+                        <p className="text-sm font-medium text-gray-900">{user?.name}</p>
+                        <p className="text-xs text-gray-500">{user?.email}</p>
+                      </div>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem
+                        onClick={handleLogout}
+                        className="flex items-center gap-2 text-red-600 focus:text-red-600"
+                      >
+                        <LogOut className="h-4 w-4" />
+                        Logout
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleLogout}
-                  className="flex items-center gap-2"
-                >
-                  <LogOut className="h-4 w-4" />
-                  <span className="hidden lg:inline">Logout</span>
-                </Button>
               </div>
 
               {/* Mobile Header Dropdown - Visible only on small screens */}
